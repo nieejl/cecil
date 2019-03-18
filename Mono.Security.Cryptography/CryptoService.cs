@@ -26,7 +26,7 @@ namespace Mono.Cecil {
 
 	static class CryptoService {
 
-		public static void StrongName (Stream stream, ImageWriter writer, StrongNameKeyPair key_pair)
+		public static void StrongName (Stream stream, ImageWriter writer, Mono.Cecil.StrongNameKeyPair key_pair)
 		{
 			int strong_name_pointer;
 

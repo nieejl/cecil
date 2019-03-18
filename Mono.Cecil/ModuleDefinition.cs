@@ -183,7 +183,7 @@ namespace Mono.Cecil {
 		Stream symbol_stream;
 		ISymbolWriterProvider symbol_writer_provider;
 		bool write_symbols;
-		SR.StrongNameKeyPair key_pair;
+		Mono.Cecil.StrongNameKeyPair key_pair;
 
 		public uint? Timestamp {
 			get { return timestamp; }
@@ -205,7 +205,7 @@ namespace Mono.Cecil {
 			set { write_symbols = value; }
 		}
 
-		public SR.StrongNameKeyPair StrongNameKeyPair {
+		public Mono.Cecil.StrongNameKeyPair StrongNameKeyPair {
 			get { return key_pair; }
 			set { key_pair = value; }
 		}
