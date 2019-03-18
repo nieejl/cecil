@@ -17,6 +17,11 @@ using System.Runtime.Serialization;
 using Mono.Security.Cryptography;
 
 using Mono.Cecil.PE;
+#if (NETSTANDARD)
+using StrongNameKeyPair=Mono.Cecil.StrongNameKeyPair;
+#else
+using StrongNameKeyPair=System.Reflection.StrongNameKeyPair;
+#endif
 
 namespace Mono.Cecil {
 
@@ -26,7 +31,7 @@ namespace Mono.Cecil {
 
 	static class CryptoService {
 
-		public static void StrongName (Stream stream, ImageWriter writer, Mono.Cecil.StrongNameKeyPair key_pair)
+		public static void StrongName (Stream stream, ImageWriter writer, StrongNameKeyPair key_pair)
 		{
 			int strong_name_pointer;
 

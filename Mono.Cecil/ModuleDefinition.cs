@@ -14,6 +14,12 @@ using System.IO;
 using System.Threading;
 using SR = System.Reflection;
 
+#if (NETSTANDARD)
+using StrongNameKeyPair=Mono.Cecil.StrongNameKeyPair;
+#else
+using StrongNameKeyPair=System.Reflection.StrongNameKeyPair;
+#endif
+
 using Mono.Cecil.Cil;
 using Mono.Cecil.Metadata;
 using Mono.Cecil.PE;
@@ -183,7 +189,7 @@ namespace Mono.Cecil {
 		Stream symbol_stream;
 		ISymbolWriterProvider symbol_writer_provider;
 		bool write_symbols;
-		Mono.Cecil.StrongNameKeyPair key_pair;
+		StrongNameKeyPair key_pair;
 
 		public uint? Timestamp {
 			get { return timestamp; }
@@ -205,7 +211,7 @@ namespace Mono.Cecil {
 			set { write_symbols = value; }
 		}
 
-		public Mono.Cecil.StrongNameKeyPair StrongNameKeyPair {
+		public StrongNameKeyPair StrongNameKeyPair {
 			get { return key_pair; }
 			set { key_pair = value; }
 		}

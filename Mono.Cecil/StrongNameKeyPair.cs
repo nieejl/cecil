@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+#if (NETSTANDARD)
+using System;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Security;
@@ -128,3 +130,4 @@ namespace Mono.Cecil {
 		}
 	}
 }
+#endif
