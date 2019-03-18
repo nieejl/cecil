@@ -101,8 +101,8 @@ namespace Mono.Cecil {
 			if (symbol_writer_provider == null && parameters.WriteSymbols)
 				symbol_writer_provider = new DefaultSymbolWriterProvider ();
 
-			if (parameters.HasStrongNameKey && name != null) {
-				name.PublicKey =  CryptoService.GetPublicKey (parameters);
+			if (parameters.StrongNameKeyPair != null && name != null) {
+				name.PublicKey = parameters.StrongNameKeyPair.PublicKey;
 				module.Attributes |= ModuleAttributes.StrongNameSigned;
 			}
 
@@ -119,7 +119,7 @@ namespace Mono.Cecil {
 					writer.WriteImage ();
 
 					if (parameters.StrongNameKeyPair != null)
-						CryptoService.StrongName (stream.value, writer, parameters);
+						CryptoService.StrongName (stream.value, writer, parameters.StrongNameKeyPair);
 				}
 			} finally {
 				module.metadata_builder = null;
@@ -2517,7 +2517,7 @@ namespace Mono.Cecil {
 				break;
 			case ImportTargetKind.ImportXmlNamespaceWithAlias:
 				signature.WriteCompressedUInt32 (GetUTF8StringBlobIndex (target.alias));
-				signature.WriteCompressedUInt32 (GetUTF8StringBlobIndex (target.@namespace));
+				signature.WriteCompressedUInt32 (GetUTF8StringBlobIndex (target.@namespace));	
 				break;
 			case ImportTargetKind.ImportAlias:
 				signature.WriteCompressedUInt32 (GetUTF8StringBlobIndex (target.alias));

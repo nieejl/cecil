@@ -183,8 +183,6 @@ namespace Mono.Cecil {
 		Stream symbol_stream;
 		ISymbolWriterProvider symbol_writer_provider;
 		bool write_symbols;
-		byte[] sn_key_blob;
-		string sn_key_container;
 		SR.StrongNameKeyPair key_pair;
 
 		public uint? Timestamp {
@@ -207,21 +205,6 @@ namespace Mono.Cecil {
 			set { write_symbols = value; }
 		}
 
-		public bool HasStrongNameKey {
-			get { return key_pair != null || sn_key_blob != null || sn_key_container != null; }
-		}
-
-		public byte[] StrongNameKeyBlob {
-			get { return sn_key_blob; }
-			set { sn_key_blob = value; }
-		}
-
-		public string StrongNameKeyContainer {
-			get { return sn_key_container; }
-			set { sn_key_container = value; }
-		}
-
-		[Obsolete ("Use StrongNameKeyBlob/StrongNameKeyContainer")]
 		public SR.StrongNameKeyPair StrongNameKeyPair {
 			get { return key_pair; }
 			set { key_pair = value; }
