@@ -13,7 +13,7 @@ using System;
 using Mono.Cecil.Metadata;
 
 namespace Mono.Cecil {
-
+	[Obsolete("Use BaseModuleWeaver.TypeSystem")]
 	public abstract class TypeSystem {
 
 		sealed class CoreTypeSystem : TypeSystem {
